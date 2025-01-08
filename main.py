@@ -3,7 +3,7 @@
 # < Imports
 # < ======================================================================================================
 
-import pygame, os
+import pygame
 import os
 import sys
 import random
@@ -1296,7 +1296,8 @@ while True:
         f'Cards Burned: {len(BURNED)}',
         f'Card Pending: {len(PENDING)}',
         f'Cards in Pile: {len(PILE)}',
-        f'Current Player: {ACTIVE_PLAYER.number}')
+        f'Current Player: {ACTIVE_PLAYER.number}',
+        f'Press Spacebar to pickup the cards in the center')
 
     align_sort_blit()
     draw_held()
