@@ -39,3 +39,24 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 
 ### Other Assets
 - The icon for the game was created by `mangsaabguru`, it is free to use with attribution and can be found [here](https://www.flaticon.com/free-icon/card-game_4072251)
+
+---
+---
+---
+
+### Simple Install (Windows)
+- To install the game you can find the `.exe` file in the assets section below or via this link: [shiphead-v0.1.0-alpha.exe](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.0-alpha/shiphead-v0.1.0-alpha.exe)
+- Once downloaded, simply find the installed file and run by double clicking `shiphead-v0.1.0-alpha.exe`
+
+### Source Code Install
+- Install the repository via `git clone https://github.com/scarletti-ben/shiphead`
+- Change directory into the repository via `cd .\shiphead\`  
+- Run the python script via `python main.py`
+
+### Info
+- This is the initial version of shiphead, code for this project was written a long while ago and unceremoniously "hacked" together to create a functional application
+- The file `shiphead-v0.1.0-alpha.exe` is a frozen version of the python script `main.py`, and was frozen using `PyInstaller 6.6.0` and `Python 3.12.1`
+- Version naming follows Semantic Versioning ([SemVer](https://semver.org/))
+
+### Miscellaneous
+- **Full Changelog**: https://github.com/scarletti-ben/shiphead/commits/v0.1.0-alpha
