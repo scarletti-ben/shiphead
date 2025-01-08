@@ -855,11 +855,17 @@ def next_player():
     else:
         ACTIVE_PLAYER = PLAYER_ONE
 
-def mouse_down(event):
-    return event.type == pygame.MOUSEBUTTONDOWN
+def left_mouse_down(event):
+    return event.type == pygame.MOUSEBUTTONDOWN and event.button == 1
 
-def mouse_up(event):
-    return event.type == pygame.MOUSEBUTTONUP
+def left_mouse_up(event):
+    return event.type == pygame.MOUSEBUTTONUP and event.button == 1
+
+def right_mouse_down(event):
+    return event.type == pygame.MOUSEBUTTONDOWN and event.button == 3
+
+def right_mouse_up(event):
+    return event.type == pygame.MOUSEBUTTONUP and event.button == 3
 
 def key_down(event):
     return event.type == pygame.KEYDOWN
@@ -1197,10 +1203,10 @@ def pick_cards():
 
     for event in events:
         handle_quit(event)
-        if mouse_down(event):
+        if left_mouse_down(event):
             if HIGHLIGHTED:
                 HELD = HIGHLIGHTED
-        elif mouse_up(event):
+        elif left_mouse_up(event):
             if HELD:
                 if OVERLAP:
                     ACTIVE_PLAYER.hand.cards.remove(HELD)
@@ -1212,7 +1218,8 @@ def pick_cards():
 
             HELD = None
             HIGHLIGHTED = None
-        elif key_down(event):
+        
+        elif key_down(event) or right_mouse_up(event):
             print('\n--- PICKING ---')
             print(f"Player {ACTIVE_PLAYER.number} has confirmed their shown cards")
 
@@ -1335,14 +1342,26 @@ while True:
 
     for event in events:
         handle_quit(event)
-        if mouse_down(event):
+        if left_mouse_down(event):
             if HIGHLIGHTED:
                 HELD = HIGHLIGHTED
-        elif mouse_up(event):
+        elif left_mouse_up(event):
             if HELD:
                 process_held()
             HELD = None
             HIGHLIGHTED = None
+        
+        if right_mouse_up(event):
+            if PILE:
+                if not PENDING:
+                    pickup(ACTIVE_PLAYER)
+                else:
+                    print('\n --- ERROR ---')
+                    print('You cannot pickup with valid pending cards')
+            else:
+                print('\n --- ERROR ---')
+                print('There are no cards to pick up')
+        
         if key_down(event):
             if event.key == pygame.K_EQUALS:
                 PLAYER_ONE.blind.cards.append(None)
