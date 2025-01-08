@@ -10,6 +10,9 @@
 - Alternatively you can download `shiphead-v0.1.1-alpha.exe` [here](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.1-alpha/shiphead-v0.1.1-alpha.exe)
 - Once downloaded, simply find the installed file and open the game by double-clicking the `.exe` file
 
+### Testing GIF
+![GIF](assets/test.gif)
+
 ### Alternative Install
 
 - Ensure you have `python` installed, the recommended version is `Python 3.12.1`
