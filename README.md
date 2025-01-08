@@ -12,6 +12,8 @@
 
 ### Alternative Install
 
+- Ensure you have `python` installed, the recommended version is `Python 3.12.1`
+  - Once installed, you can check your python version via `python --version`
 - Install the repository via `git clone https://github.com/scarletti-ben/shiphead`
 - Change directory into the repository via `cd .\shiphead\` 
 - Set up a virtual environment [**Optional**]
@@ -19,7 +21,6 @@
   -  Activate the virtual environment via `.\venv\Scripts\activate`
 - Install required packages via `pip install -r requirements.txt`
 - Run the python script via `python main.py`
-- The recommended python version is `Python 3.12.1`, you can check your python version via `python --version`
 
 # Game Rules (Work in Progress)
 Ignoring most of the "why" of each rule, a simple reference of what can be played on what is below
