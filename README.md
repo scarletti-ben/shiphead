@@ -1,6 +1,7 @@
 # Shiphead
 Playing card game from my childhood built in Python
 
+- To run `C:\...\shiphead> python main.py`
 
 # Asset Attribution
 ### Creative Commons Zero (CC0) Assets

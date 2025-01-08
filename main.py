@@ -11,9 +11,9 @@ os.system('cls') # - Clear VSCode Terminal
 pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA)) # - Blank icon
 pygame.display.set_caption('') # - Set blank caption
 
-ASSETS: str = "E:/code/github/repositories/active/assets/"
-PLAYING_CARDS: str = ASSETS + "other/playing_cards/"
-FONTS: str = ASSETS + "fonts/"
+ASSETS: str = "assets/"
+PLAYING_CARDS: str = ASSETS + ""
+FONTS: str = ASSETS + ""
 
 # ~ System Variables
 W = 1920
