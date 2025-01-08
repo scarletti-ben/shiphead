@@ -24,8 +24,8 @@ pygame.display.set_caption('shiphead')
 # < ======================================================================================================
 
 __DIR__ = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__))) + "\\"
-# ASSETS: str = __DIR__ # * ENABLE IF FREEZING TO MAIN.EXE
-ASSETS: str = __DIR__ + "assets\\" # * ENABLE IF RUNNING MAIN.PY
+# ASSETS: str = __DIR__ # POSTIT - ENABLE IF FREEZING TO MAIN.EXE
+ASSETS: str = __DIR__ + "assets\\" # POSTIT - ENABLE IF RUNNING MAIN.PY
 pygame.display.set_icon(pygame.image.load(ASSETS + "shiphead.png"))
 PLAYING_CARDS: str = ASSETS + ""
 FONTS: str = ASSETS + ""
