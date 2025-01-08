@@ -82,6 +82,8 @@ The rule "9 or lower" means that if a 9 is on the pile you must play a card that
 
 Suits do not matter
 
+Four of a kind burns the deck
+
 # Game Controls (Work in Progress)
 - The game is primarily controlled by your mouse
     - Left mouse button to alter settings and drag cards
