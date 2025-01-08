@@ -1,6 +1,8 @@
 # Shiphead
 Playing card game from my childhood built in Python
 
+# Testing
+- To install testable source code `git clone https://github.com/scarletti-ben/shiphead`
 - To run `C:\...\shiphead> python main.py`
 
 # Asset Attribution
