@@ -1,24 +1,36 @@
-# ~ Import List
-import pygame, os
-import sys, random, itertools, numpy
-import typing, math, time, datetime, ctypes, string
 
-# ~ Initialisation
-pygame.init() # - Initialise pygame
-ctypes.windll.user32.SetProcessDPIAware() # - Disable Display Scaling
-pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA)) # - Blank icon
-pygame.display.set_caption('') # - Set blank caption
+# < ======================================================================================================
+# < Imports
+# < ======================================================================================================
+
+import pygame, os
+import os
+import sys
+import random
+import ctypes
+import string
+
+# < ======================================================================================================
+# < Initialisation
+# < ======================================================================================================
+
+pygame.init()
+ctypes.windll.user32.SetProcessDPIAware()
+pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA))
+pygame.display.set_caption('')
+
+# < ======================================================================================================
+# < Constants and Variables
+# < ======================================================================================================
 
 __DIR__ = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__))) + "\\"
 # ASSETS: str = __DIR__ # * ENABLE IF FREEZING TO MAIN.EXE
 ASSETS: str = __DIR__ + "assets\\" # * ENABLE IF RUNNING MAIN.PY
 PLAYING_CARDS: str = ASSETS + ""
 FONTS: str = ASSETS + ""
-
-# ~ System Variables
-W = 1920
-H = 1080
-FPS = 60
+W: int = 1920
+H: int = 1080
+FPS: int = 60
 CENTER = CX, CY = W // 2, H // 2
 GREY = [63,63,63]
 tile_w = 53
@@ -37,6 +49,21 @@ symbols = {
     "hearts": "♥",
     "clubs": "♣",
     "diamonds": "♦"}
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+GREY = (100, 80, 90)
+CRIMSON = (220, 20, 60)
+DARK_CRIMSON = (110, 10, 30)
+DARK_GREY = (63, 63, 63)
+DARK_GREEN = (0, 100, 0)
+MED_GREEN = (0,170,0)
+BRIGHT_GREEN = (0, 200, 0)
+
+# < ======================================================================================================
+# < Pygame Objects
+# < ======================================================================================================
 
 # ~ Objects
 clock = pygame.time.Clock()
@@ -45,19 +72,12 @@ user_event = pygame.USEREVENT + 1
 font = pygame.font.Font(font_name, 28)
 font_small = pygame.font.Font(font_name, 18)
 
-def SETTINGS():
-    """"""
-    BLACK = (0, 0, 0)
-    WHITE = (255, 255, 255)
-    GREEN = (0, 255, 0)
-    RED = (255, 0, 0)
-    GREY = (100, 80, 90)
-    CRIMSON = (220, 20, 60)
-    DARK_CRIMSON = (110, 10, 30)
-    DARK_GREY = (63, 63, 63)
-    DARK_GREEN = (0, 100, 0)
-    MED_GREEN = (0,170,0)
-    BRIGHT_GREEN = (0, 200, 0)
+# < ======================================================================================================
+# < Settings Menu Loop
+# < ======================================================================================================
+
+def settings_loop():
+    """Loop for user to change settings before the game starts"""
 
     class Button:
         def __init__(self, x, y, width, height, name):
@@ -76,9 +96,8 @@ def SETTINGS():
             h = self.rect.height
 
             if self.name == 'Confirm':
-                clr = MED_GREEN
-                paste(clr, (cx, y, w, h))
-                paste(clr, (x, y, w, h))
+                paste(MED_GREEN, (cx, y, w, h))
+                paste(MED_GREEN, (x, y, w, h))
             elif self.enabled:
                 paste(BRIGHT_GREEN, (cx, y, w, h))
                 paste(DARK_GREEN, (x, y, w, h))
@@ -186,15 +205,12 @@ def SETTINGS():
             button = CounterButton(button_x, button_y, button_width, button_height, k)
         buttons.append(button)
 
-    clock = pygame.time.Clock()
-    fps = 60
-
     buttons[0].enabled = True
     buttons[1].enabled = False
     buttons[2].enabled = True
     buttons[3].value = 5
     buttons[4].value = 3
-    buttons[5].enabled = False
+    buttons[5].enabled = True
     buttons[6].enabled = False
 
     while True:
@@ -224,9 +240,11 @@ def SETTINGS():
             return
 
         pygame.display.flip()
-        clock.tick(fps)
+        clock.tick(FPS)
 
-# ~ Game Settings
+# < ======================================================================================================
+# < Card Class
+# < ======================================================================================================
 
 class Card:
 
@@ -341,47 +359,16 @@ class Card:
         """Draw a card surface at current rectangle position"""
         display.blit(self.surface, self.rectangle)
 
-def image_dictionary(tile_w, tile_h, scale, suits, ranks, flip = False):
-    """Split tilesheet into image dictionary with 'suit_rank' as keys"""
-    if flip:
-        filepath = PLAYING_CARDS + "card_sheet_53x70_readable.png"
-    else:
-        filepath = PLAYING_CARDS + "card_sheet_53x70_flipped.png"
-    sheet = pygame.image.load(filepath).convert_alpha()
-    columns = int(sheet.get_width() / tile_w)
-    rows = int(sheet.get_height() / tile_h)
-    image_list = []
-    for y in range(rows):
-        for x in range(columns):
-            left = x * tile_w
-            top = y * tile_h
-            rectangle = [left, top, tile_w, tile_h]
-            subsurface = sheet.subsurface(rectangle)
-            if scale != 1:
-                dimensions = tile_w * scale, tile_h * scale
-                subsurface = pygame.transform.scale(subsurface, dimensions)
-            image_list.append(subsurface)  
-    image_index = 0
-    image_dictionary = {}
-    for suit in suits:
-        for rank in ranks:
-            key = f'{suit}_{rank}'
-            image_dictionary[key] = image_list[image_index]
-            image_index += 1
-    back_path = PLAYING_CARDS + "card_sheet_53x70_back_alt.png"
-    card_back = pygame.image.load(back_path).convert_alpha()
-    if scale != 1:
-        dimensions = tile_w * scale, tile_h * scale
-        card_back = pygame.transform.scale(card_back, dimensions)
-    image_dictionary['card_back'] = card_back
-    return image_dictionary
+# < ======================================================================================================
+# < Timer Class
+# < ======================================================================================================
 
 class Timer:
 
-    def __init__(self, seconds, FPS = 60):
+    def __init__(self, seconds, fps = FPS):
         """Create a timer with an end time in seconds"""
         self.seconds = seconds
-        self.end = FPS * seconds
+        self.end = fps * seconds
         self.counter = 0
 
     @property
@@ -412,92 +399,9 @@ class Timer:
         """Set the counter to 0"""
         self.counter = 0
 
-def get_valid_ranks(rank, active):
-    """Get list of the valid ranks that can play on a card rank"""
-    if rank == None:
-        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 2:
-        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 3:
-        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 4:
-        valid = [2, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 5:
-        valid = [2, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 6:
-        valid = [2, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 7:
-        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 8:
-        if active:
-            valid = [8]
-        else:
-            valid = [2, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 9:
-        if active:
-            # Postit - KIRSTEN PREFERS 10 PLAYS ON A 9 
-            valid = [2, 3, 4, 5, 6, 7, 8, 9, 10]
-        else:
-            valid = [2, 7, 9, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 10:
-        valid = [2, 7, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 'jack':
-        valid = [2, 7, 10, 'jack', 'queen', 'king', 'ace']
-    elif rank == 'queen':
-        valid = [2, 7, 10, 'queen', 'king', 'ace']
-    elif rank == 'king':
-        valid = [2, 7, 10, 'king', 'ace']
-    elif rank == 'ace':
-        valid = [2, 7, 10, 'ace']
-    return valid
-
-def check_four_in_a_row(cards):
-    """Check if four cards in a row are same row, discard 7s if needed"""
-    
-    def four_in_a_row(cards):
-        """Check if all cards in a set are the same rank"""
-        result = False
-        if len(cards) >= 4:
-            top_four = cards[-4:]
-            result = len(set(card.rank for card in top_four)) == 1
-        return result
-    
-    result = False
-    if four_in_a_row(cards):
-        result = True
-    else:
-        cards = [card for card in cards if card.rank != 7]
-        result = four_in_a_row(cards)
-    return result
-
-def check_for_rank(cards, rank):
-    """Check if there is a specific rank at the top of the pile"""
-    if cards:
-        top_card = cards[-1]
-        if top_card.rank == rank:
-            return True
-        
-def check_for_rank_any(cards, rank, pending = None):
-    """Check if any of a rank exist in a given set of cards"""
-    cards = [card for card in cards if card is not None]
-    if pending:
-        cards = [card for card in cards if card not in pending]
-    return any(card.rank == rank for card in cards)
-
-def check_burned(cards):
-    """Check for a 10 or a four in a row"""
-    if check_for_rank(cards, 10):
-        print('10 burns the deck, take another turn')
-        return True
-    else:
-        if check_four_in_a_row(cards):
-            print('Four in a row burns the deck, take another turn')
-            return True
-
-#~############################################################################~#
-#~############################################################################~#
-#^############################################################################^#
-#^############################################################################^#
+# < ======================================================================================================
+# < Pile Class and Subclasses
+# < ======================================================================================================
 
 class Pile:
 
@@ -597,11 +501,6 @@ class Pile:
             output.reverse()
         return output
     
-    # @property
-    # def reversed(self):
-    #     """Return a reversed version of card list"""
-    #     return list(reversed(self.cards))
-    
     def highlighted(self, mouse):
         """Return first card that collides with mouse, iterating in reverse"""
         cards = list(reversed(
@@ -657,10 +556,9 @@ class Shown(Pile):
             output.reverse()
         return output
 
-#^############################################################################^#
-#^############################################################################^#
-#!############################################################################!#
-#!############################################################################!#
+# < ======================================================================================================
+# < Player Class and Subclasses
+# < ======================================================================================================
 
 class Player:
     def pile(self):
@@ -702,6 +600,126 @@ class PlayerTwo(Player):
             cy = H // 4 - 8, spacing = 1.05, hidden = True, fixed = True)
         self.number = 2
 
+# < ======================================================================================================
+# < Functions
+# < ======================================================================================================
+
+def image_dictionary(tile_w, tile_h, scale, suits, ranks, flip = False):
+    """Split tilesheet into image dictionary with 'suit_rank' as keys"""
+    if flip:
+        filepath = PLAYING_CARDS + "card_sheet_53x70_readable.png"
+    else:
+        filepath = PLAYING_CARDS + "card_sheet_53x70_flipped.png"
+    sheet = pygame.image.load(filepath).convert_alpha()
+    columns = int(sheet.get_width() / tile_w)
+    rows = int(sheet.get_height() / tile_h)
+    image_list = []
+    for y in range(rows):
+        for x in range(columns):
+            left = x * tile_w
+            top = y * tile_h
+            rectangle = [left, top, tile_w, tile_h]
+            subsurface = sheet.subsurface(rectangle)
+            if scale != 1:
+                dimensions = tile_w * scale, tile_h * scale
+                subsurface = pygame.transform.scale(subsurface, dimensions)
+            image_list.append(subsurface)  
+    image_index = 0
+    image_dictionary = {}
+    for suit in suits:
+        for rank in ranks:
+            key = f'{suit}_{rank}'
+            image_dictionary[key] = image_list[image_index]
+            image_index += 1
+    back_path = PLAYING_CARDS + "card_sheet_53x70_back_alt.png"
+    card_back = pygame.image.load(back_path).convert_alpha()
+    if scale != 1:
+        dimensions = tile_w * scale, tile_h * scale
+        card_back = pygame.transform.scale(card_back, dimensions)
+    image_dictionary['card_back'] = card_back
+    return image_dictionary
+
+def get_valid_ranks(rank, active):
+    """Get list of the valid ranks that can play on a card rank"""
+    if rank == None:
+        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 2:
+        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 3:
+        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 4:
+        valid = [2, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 5:
+        valid = [2, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 6:
+        valid = [2, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 7:
+        valid = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 8:
+        if active:
+            valid = [8]
+        else:
+            valid = [2, 7, 8, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 9:
+        if active:
+            valid = [2, 3, 4, 5, 6, 7, 8, 9] # Postit - OPTIONAL 10 DOES NOT PLAY ON A 9
+        else:
+            valid = [2, 7, 9, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 10:
+        valid = [2, 7, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 'jack':
+        valid = [2, 7, 10, 'jack', 'queen', 'king', 'ace']
+    elif rank == 'queen':
+        valid = [2, 7, 10, 'queen', 'king', 'ace']
+    elif rank == 'king':
+        valid = [2, 7, 10, 'king', 'ace']
+    elif rank == 'ace':
+        valid = [2, 7, 10, 'ace']
+    return valid
+
+def check_four_in_a_row(cards):
+    """Check if four cards in a row are same row, discard 7s if needed"""
+    
+    def four_in_a_row(cards):
+        """Check if all cards in a set are the same rank"""
+        result = False
+        if len(cards) >= 4:
+            top_four = cards[-4:]
+            result = len(set(card.rank for card in top_four)) == 1
+        return result
+    
+    result = False
+    if four_in_a_row(cards):
+        result = True
+    else:
+        cards = [card for card in cards if card.rank != 7]
+        result = four_in_a_row(cards)
+    return result
+
+def check_for_rank(cards, rank):
+    """Check if there is a specific rank at the top of the pile"""
+    if cards:
+        top_card = cards[-1]
+        if top_card.rank == rank:
+            return True
+        
+def check_for_rank_any(cards, rank, pending = None):
+    """Check if any of a rank exist in a given set of cards"""
+    cards = [card for card in cards if card is not None]
+    if pending:
+        cards = [card for card in cards if card not in pending]
+    return any(card.rank == rank for card in cards)
+
+def check_burned(cards):
+    """Check for a 10 or a four in a row"""
+    if check_for_rank(cards, 10):
+        print('10 burns the deck, take another turn')
+        return True
+    else:
+        if check_four_in_a_row(cards):
+            print('Four in a row burns the deck, take another turn')
+            return True
+
 def populate(pile):
     """Fill a pile with 4 suits of 13 cards each with images"""
     for suit in suits:
@@ -739,11 +757,6 @@ def start(players, stacks):
     if SHUFFLE:
         shuffle(DECK)
     deal(players, HAND_CARDS, DOWN_CARDS)
-
-#&############################################################################&#
-#&############################################################################&#
-#<############################################################################<#
-#<############################################################################<#
 
 def align_horizontal(cards, cx, cy, spacing):
     """Align all cards in pile horizontally"""
@@ -857,9 +870,10 @@ def handle_quit(event):
         if event.key == pygame.K_ESCAPE:
             sys.exit()
 
-def DO_STUFF():
-    global HIGHLIGHTED
+def align_sort_blit():
+    """Function to be called in the main loop to handle sorting / alignment and blitting cards"""
 
+    global HIGHLIGHTED
 
     PLAYER_ONE.hand.sort()
     PLAYER_TWO.hand.sort()
@@ -1009,9 +1023,6 @@ def end_timer():
         if not any(PLAYER_TWO.shown.cards):
             if not any(PLAYER_TWO.blind.cards):
                 game_end('Player Two')
-
-
-
 
 def skip_turn():
     global HELD, HIGHLIGHTED, TABLE_ACTIVE
@@ -1225,12 +1236,9 @@ def pick_cards():
     pygame.display.flip()	
     clock.tick(FPS)
 
-#<############################################################################<#
-#<############################################################################<#
-#!############################################################################!#
-#!############################################################################!#
-#+############################################################################+#
-#+############################################################################+#
+# < ======================================================================================================
+# < Pre-Execution Setup
+# < ======================================================================================================
 
 images = image_dictionary(tile_w, tile_h, scale, suits, ranks)
 timer = Timer(5)
@@ -1248,19 +1256,17 @@ ACTIVE_PLAYER = PLAYER_ONE
 STACKS = DECK, PILE, BURNED, PENDING, PLAYER_ONE.hand, PLAYER_ONE.blind, PLAYER_ONE.shown, PLAYER_TWO.hand, PLAYER_TWO.blind, PLAYER_TWO.shown
 PILE_HOVERED = False
 
-#+############################################################################+#
-#+############################################################################+#
-#&############################################################################&#
-#&############################################################################&#
-#<############################################################################<#
-#<############################################################################<#
-
 changing_settings = True
 if changing_settings:
-    SETTINGS()
+    settings_loop()
 start(PLAYERS, STACKS)
 if ENDGAME:
     DECK.clear()
+
+# < ======================================================================================================
+# < Main Loop Execution
+# < ======================================================================================================
+
 while True:
 
     TABLE_RANK = get_table_rank()
@@ -1291,9 +1297,8 @@ while True:
         f'Cards in Pile: {len(PILE)}',
         f'Current Player: {ACTIVE_PLAYER.number}')
 
-    DO_STUFF()
+    align_sort_blit()
     draw_held()
-
 
     if ACTIVE_PLAYER is PLAYER_TWO and not PENDING:
         cards = [card for card in ACTIVE_PILE.cards if card is not None and card not in RESERVED]
