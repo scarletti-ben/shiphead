@@ -1230,7 +1230,7 @@ def pick_cards():
             
     draw_text(
         'Left Mouse Button to drag and replace cards.',
-        f'Press any key to end your turn.',
+        f'Press any key to start the game.',
         f'Current Player: {ACTIVE_PLAYER.number}',
         f'Cards in deck: {len(DECK)}')
 

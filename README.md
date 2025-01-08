@@ -25,7 +25,24 @@
 Test
 
 # Game Controls
-Test
+- The game is primarily controlled by your mouse
+    - Left mouse button to alter settings and drag cards
+    - Right mouse button to pick up cards from the middle
+- Spacebar to pick up cards from the middle
+- Upon opening the game you are met with settings
+    - Clear Deck => Default = True
+    - Pick Cards => Default = False
+    - Shuffle => Default = True
+    - Hand Size => Default = 5
+    - Table Cards => Default = 3
+    - Hide AI => Default = True
+- Cards will fill with colour as a timer
+    - If the colour is moving slowly it suggests you could play more of that rank of card
+        - You do not have to, it may be tactical not to do so
+- Drag your card from your hand to the center
+- If you hover your mouse over the deck hand it will show all the valid cards in your hand that you can play
+- The top left of the game has info and some debugging stats
+- If picking mode is enabled then you get to pick your starting cards, swapping cards into and out of your hand until you are satisfied with your face up cards and hand, press any key to start the game when you are satisfied
 
 # Information
 - The latest release is `shiphead-v0.1.1-alpha` as of the **8th of January 2025**
