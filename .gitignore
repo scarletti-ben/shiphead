@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# PyInstaller Batch
+installer.bat
+
 # Distribution / packaging
 .Python
 build/

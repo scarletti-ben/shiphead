@@ -9,7 +9,9 @@ ctypes.windll.user32.SetProcessDPIAware() # - Disable Display Scaling
 pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA)) # - Blank icon
 pygame.display.set_caption('') # - Set blank caption
 
-ASSETS: str = "assets/"
+__DIR__ = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__))) + "\\"
+# ASSETS: str = __DIR__ # * ENABLE IF FREEZING TO MAIN.EXE
+ASSETS: str = __DIR__ + "assets\\" # * ENABLE IF RUNNING MAIN.PY
 PLAYING_CARDS: str = ASSETS + ""
 FONTS: str = ASSETS + ""
 
@@ -198,9 +200,9 @@ def SETTINGS():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                quit()
+                sys.exit()
             elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                quit()
+                sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 for button in buttons:
                     if button.rect.collidepoint(event.pos):
@@ -850,10 +852,10 @@ def key_down(event):
 
 def handle_quit(event):
     if event.type == pygame.QUIT:
-        quit()
+        sys.exit()
     elif event.type == pygame.KEYDOWN:
         if event.key == pygame.K_ESCAPE:
-            quit()
+            sys.exit()
 
 def DO_STUFF():
     global HIGHLIGHTED
@@ -932,7 +934,7 @@ def game_end(player = None):
         print(f'{player} has no cards remaining, they have won the game.')
     else:
         print('Player has no cards remaining.')
-    quit()
+    sys.exit()
 
 def draw_held():
     if HELD:
