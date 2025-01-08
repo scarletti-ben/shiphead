@@ -38,4 +38,4 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 - The card images are edited, and the originals can be found from `beemaxstudio`  [here](https://beemaxstudio.itch.io/pixel-cards-pack)
 
 ### Other Assets
-- The icon for the game was created by `mangsaabguru` and can be found [here](https://www.flaticon.com/free-icon/card-game_4072251)
+- The icon for the game was created by `mangsaabguru`, it is free to use with attribution and can be found [here](https://www.flaticon.com/free-icon/card-game_4072251)
