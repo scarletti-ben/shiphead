@@ -1,36 +1,38 @@
 # Shiphead
-Playing card game from my childhood built in Python
+- Shiphead is a card game I learned when I was younger, I have been enjoying it for years and have adapted the rules over time. The game is played with a regular deck of 52 cards in which some cards are given special abilities. I have attempted to recreate Shiphead using `Python` and make it playable
+- The rules for the original card game can be found [here](#game-rules)
+- The controls for the the electronic version of the game can be found [here](#game-controls)
 
-- The latest release can be found [here](https://github.com/scarletti-ben/shiphead/releases/latest)
-    - Simply download the `.exe` file, an example file name would be `shiphead-v0.1.0-alpha.exe`
+# Installation
 
-# Installing
-- A single application `shiphead-v0.1.0-alpha.exe`
+### Simple Install (Windows)
+- Navigate to the latest releases section [here](https://github.com/scarletti-ben/shiphead/releases/latest) and click to download the latest `.exe` file
+- Alternatively you can download `shiphead-v0.1.1-alpha.exe` [here](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.1-alpha/shiphead-v0.1.1-alpha.exe)
+- Once downloaded, simply find the installed file and open the game by double-clicking the `.exe` file
 
-# Installing from Source Code
-- Install the repository => `git clone https://github.com/scarletti-ben/shiphead`
-- Change directory into the repository => `cd .\shiphead\`  
-- Run the python script => `python main.py`
+### Alternative Install
 
-Put note on how to download first for regular users [thing](https://github.com/scarletti-ben/shiphead/releases/tag/v0.1.0-alpha)
+- Install the repository via `git clone https://github.com/scarletti-ben/shiphead`
+- Change directory into the repository via `cd .\shiphead\` 
+- Set up a virtual environment [**Optional**]
+  -  Initialise the virtual environment via `python -m venv venv`
+  -  Activate the virtual environment via `.\venv\Scripts\activate`
+- Install required packages via `pip install -r requirements.txt`
+- Run the python script via `python main.py`
+- The recommended python version is `Python 3.12.1`, you can check your python version via `python --version`
 
-Application file `shiphead-v0.1.0-alpha.exe` is a frozen version of the Python script `main.py`, and was frozen using `PyInstaller 6.6.0` and `Python 3.12.1`
+# Game Rules
+Test
 
-The link to the single file application can be found [here](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.0-alpha/shiphead-v0.1.0-alpha.exe)
+# Game Controls
+Test
 
-Example of the terminal window when installing and running `Shiphead`
-```cmd
-C:\...\Documents> git clone https://github.com/scarletti-ben/shiphead
-Cloning into 'shiphead'...
-Receiving objects: 100% done.
-C:\...\Documents> cd .\shiphead\
-C:\...\Documents\shiphead> python main.py
-pygame 2.5.2 (SDL 2.28.3, Python 3.12.1)
-Hello from the pygame community. https://www.pygame.org/contribute.html
-```
-
-# Executable
-- The executable has been frozen using `PyInstaller` to `shiphead.exe`
+# Information
+- The latest release is `shiphead-v0.1.1-alpha` as of the **8th of January 2025**
+- A list of all past releases can be found [here](https://github.com/scarletti-ben/shiphead/releases)
+- Code for this project was written a long while ago and unceremoniously "hacked" together to create a first alpha release
+- The `.exe` file is a frozen version of the python script `main.py`, and was frozen using `PyInstaller 6.6.0` and `Python 3.12.1`
+- Python is embedded in the `.exe` file, this means that users will not need python installed on their system
 
 # Asset Attribution
 ### Creative Commons Zero (CC0) Assets
@@ -39,24 +41,3 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
 
 ### Other Assets
 - The icon for the game was created by `mangsaabguru`, it is free to use with attribution and can be found [here](https://www.flaticon.com/free-icon/card-game_4072251)
-
----
----
----
-
-### Simple Install (Windows)
-- To install the game you can find the `.exe` file in the assets section below or via this link: [shiphead-v0.1.0-alpha.exe](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.0-alpha/shiphead-v0.1.0-alpha.exe)
-- Once downloaded, simply find the installed file and run by double clicking `shiphead-v0.1.0-alpha.exe`
-
-### Source Code Install
-- Install the repository via `git clone https://github.com/scarletti-ben/shiphead`
-- Change directory into the repository via `cd .\shiphead\`  
-- Run the python script via `python main.py`
-
-### Info
-- This is the initial version of shiphead, code for this project was written a long while ago and unceremoniously "hacked" together to create a functional application
-- The file `shiphead-v0.1.0-alpha.exe` is a frozen version of the python script `main.py`, and was frozen using `PyInstaller 6.6.0` and `Python 3.12.1`
-- Version naming follows Semantic Versioning ([SemVer](https://semver.org/))
-
-### Miscellaneous
-- **Full Changelog**: https://github.com/scarletti-ben/shiphead/commits/v0.1.0-alpha
