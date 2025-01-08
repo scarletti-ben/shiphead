@@ -10,6 +10,16 @@
 - Alternatively you can download `shiphead-v0.1.1-alpha.exe` [here](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.1-alpha/shiphead-v0.1.1-alpha.exe)
 - Once downloaded, simply find the installed file and open the game by double-clicking the `.exe` file
 
+### Windows Warning Message
+- Windows often shows warnings for unsigned `.exe` files that look like this:
+```
+Windows protected your PC
+Microsoft Defender SmartScreen prevented an unrecognised app from starting. Running this app might put your PC at risk.
+[More info]
+```
+- This should only happen the first time you open the game, and you can simply click `More info` and then `Run anyway`
+- A better explanation of code-signing issues and false-postive warnings can be found [here](https://stackoverflow.com/a/45316660)
+
 ### Testing GIF
 ![GIF](assets/test.gif)
 
