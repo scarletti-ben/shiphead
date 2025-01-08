@@ -6,7 +6,7 @@
 # Installation
 
 ### Simple Install (Windows)
-- Navigate to the latest releases section [here](https://github.com/scarletti-ben/shiphead/releases/latest) and click to download the latest `.exe` file
+- Navigate to the latest release [here](https://github.com/scarletti-ben/shiphead/releases/latest) and you can find the `.exe` file in the `Assets` section below
 - Alternatively you can download `shiphead-v0.1.1-alpha.exe` [here](https://github.com/scarletti-ben/shiphead/releases/download/v0.1.1-alpha/shiphead-v0.1.1-alpha.exe)
 - Once downloaded, simply find the installed file and open the game by double-clicking the `.exe` file
 
