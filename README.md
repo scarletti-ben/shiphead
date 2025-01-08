@@ -35,7 +35,8 @@ Microsoft Defender SmartScreen prevented an unrecognised app from starting. Runn
 - Install required packages via `pip install -r requirements.txt`
 - Run the python script via `python main.py`
 
-# Game Rules (Work in Progress)
+# Game Rules
+### **(Section is a Work in Progress)**
 Ignoring most of the "why" of each rule, a simple reference of what can be played on what is below
 
 ### What Can be Played on a...
@@ -84,7 +85,8 @@ Suits do not matter
 
 Four of a kind burns the deck
 
-# Game Controls (Work in Progress)
+# Game Controls
+### **(Section is a Work in Progress)**
 - The game is primarily controlled by your mouse
     - Left mouse button to alter settings and drag cards
     - Right mouse button to pick up cards from the middle
