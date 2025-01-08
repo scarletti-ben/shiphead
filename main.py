@@ -6,8 +6,6 @@ import typing, math, time, datetime, ctypes, string
 # ~ Initialisation
 pygame.init() # - Initialise pygame
 ctypes.windll.user32.SetProcessDPIAware() # - Disable Display Scaling
-os.system('cls') # - Clear VSCode Terminal
-# function prompt {"> "} # - Run in VSCode terminal to hide filepath
 pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA)) # - Blank icon
 pygame.display.set_caption('') # - Set blank caption
 
