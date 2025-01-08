@@ -1,9 +1,21 @@
 # Shiphead
 Playing card game from my childhood built in Python
 
-# Testing
-- To install testable source code `git clone https://github.com/scarletti-ben/shiphead`
-- To run `C:\...\shiphead> python main.py`
+# Installing
+- Install the repository => `git clone https://github.com/scarletti-ben/shiphead`
+- Change directory into the repository => `cd .\shiphead\`  
+- Run the python script => `python main.py`
+
+Example of the terminal window when installing and running `Shiphead`
+```cmd
+C:\...\Documents> git clone https://github.com/scarletti-ben/shiphead
+Cloning into 'shiphead'...
+Receiving objects: 100% done.
+C:\...\Documents> cd .\shiphead\
+C:\...\Documents\shiphead> python main.py
+pygame 2.5.2 (SDL 2.28.3, Python 3.12.1)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+```
 
 # Asset Attribution
 ### Creative Commons Zero (CC0) Assets
