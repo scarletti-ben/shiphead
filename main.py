@@ -16,8 +16,8 @@ import string
 
 pygame.init()
 ctypes.windll.user32.SetProcessDPIAware()
-pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA))
-pygame.display.set_caption('')
+# pygame.display.set_icon(pygame.Surface([32,32], pygame.SRCALPHA))
+pygame.display.set_caption('shiphead')
 
 # < ======================================================================================================
 # < Constants and Variables
@@ -26,6 +26,7 @@ pygame.display.set_caption('')
 __DIR__ = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__))) + "\\"
 # ASSETS: str = __DIR__ # * ENABLE IF FREEZING TO MAIN.EXE
 ASSETS: str = __DIR__ + "assets\\" # * ENABLE IF RUNNING MAIN.PY
+pygame.display.set_icon(pygame.image.load(ASSETS + "shiphead.png"))
 PLAYING_CARDS: str = ASSETS + ""
 FONTS: str = ASSETS + ""
 W: int = 1920

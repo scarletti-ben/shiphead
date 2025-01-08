@@ -1,6 +1,9 @@
 # Shiphead
 Playing card game from my childhood built in Python
 
+- The latest release can be found [here](https://github.com/scarletti-ben/shiphead/releases/latest)
+    - Simply download the `.exe` file, an example file name would be `shiphead-v0.1.0-alpha.exe`
+
 # Installing
 - A single application `shiphead-v0.1.0-alpha.exe`
 
@@ -8,7 +11,6 @@ Playing card game from my childhood built in Python
 - Install the repository => `git clone https://github.com/scarletti-ben/shiphead`
 - Change directory into the repository => `cd .\shiphead\`  
 - Run the python script => `python main.py`
-
 
 Put note on how to download first for regular users [thing](https://github.com/scarletti-ben/shiphead/releases/tag/v0.1.0-alpha)
 
