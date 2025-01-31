@@ -1,0 +1,15 @@
+# General
+- Clean code
+- Code for WASM (async)
+- Add GIF of the game to `README.md`
+
+# Quick Mode
+- No deck to draw from
+- Each player starts with a 10
+- The cards in the game should allow for four of a kind
+    - 6 + 6 = 12 cards down
+    - 6 + 6 = 12 cards in hands
+- Of the 24 cards, perhaps two or three quads?
+
+# Draft Mode
+- Draft cards based on their points
